@@ -1,0 +1,118 @@
+{
+  "areas": [
+    {
+      "name": "ground",
+      "bounds": {
+        "x": 3456,
+        "y": 3456,
+        "width": 64,
+        "height": 64
+      },
+      "plane": 0,
+      "obstacle": "tree"
+    },
+    {
+      "name": "roof1",
+      "bounds": {
+        "x": 3503,
+        "y": 3488,
+        "width": 9,
+        "height": 11
+      },
+      "plane": 2,
+      "obstacle": "gap1"
+    },
+    {
+      "name": "roof2",
+      "bounds": {
+        "x": 3495,
+        "y": 3499,
+        "width": 17,
+        "height": 9
+      },
+      "plane": 2,
+      "obstacle": "gap2"
+    },
+    {
+      "name": "roof3",
+      "bounds": {
+        "x": 3484,
+        "y": 3497,
+        "width": 11,
+        "height": 11
+      },
+      "plane": 2,
+      "obstacle": "gap3"
+    },
+    {
+      "name": "roof4",
+      "bounds": {
+        "x": 3473,
+        "y": 3490,
+        "width": 11,
+        "height": 13
+      },
+      "plane": 3,
+      "obstacle": "gap4"
+    },
+    {
+      "name": "roof5",
+      "bounds": {
+        "x": 3476,
+        "y": 3480,
+        "width": 9,
+        "height": 10
+      },
+      "plane": 2,
+      "obstacle": "gap5"
+    },
+    {
+      "name": "roof6",
+      "bounds": {
+        "x": 3476,
+        "y": 3467,
+        "width": 29,
+        "height": 13
+      },
+      "plane": 3,
+      "obstacle": "gap6"
+    },
+    {
+      "name": "roof7",
+      "bounds": {
+        "x": 3505,
+        "y": 3473,
+        "width": 12,
+        "height": 11
+      },
+      "plane": 2,
+      "obstacle": "gap7"
+    }
+  ],
+  "obstacles": [
+    {
+      "name": "tree"
+    },
+    {
+      "name": "gap1"
+    },
+    {
+      "name": "gap2"
+    },
+    {
+      "name": "gap3"
+    },
+    {
+      "name": "gap4"
+    },
+    {
+      "name": "gap5"
+    },
+    {
+      "name": "gap6"
+    },
+    {
+      "name": "gap7"
+    }
+  ]
+}

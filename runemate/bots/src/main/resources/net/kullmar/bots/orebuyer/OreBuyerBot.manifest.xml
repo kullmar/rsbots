@@ -1,0 +1,23 @@
+<manifest>
+    <main-class>net.kullmar.bots.orebuyer.OreBuyerBot</main-class>
+    <name>Kullmar's Ore Buyer</name>
+    <tag-line>In development</tag-line>
+    <description>Blast furnace</description>
+    <version>0.0.1</version>
+
+    <compatibility>
+        <game>OSRS</game>
+    </compatibility>
+
+    <categories>
+        <category>other</category>
+    </categories>
+
+    <internal-id>OreBuyer</internal-id>
+
+    <open-source>false</open-source>
+    <hidden>true</hidden>
+    <access>private</access>
+    <tags>
+    </tags>
+</manifest>

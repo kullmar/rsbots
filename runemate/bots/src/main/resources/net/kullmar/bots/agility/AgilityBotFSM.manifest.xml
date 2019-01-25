@@ -1,0 +1,29 @@
+<manifest>
+    <main-class>net.kullmar.bots.agility.AgilityBotFSM</main-class>
+    <name>Kullmar's Agility FSM</name>
+    <tag-line>In development</tag-line>
+    <description>blah</description>
+    <version>0.0.1</version>
+
+    <compatibility>
+        <game>OSRS</game>
+    </compatibility>
+
+    <categories>
+        <category>Agility</category>
+    </categories>
+
+    <internal-id>AgilityBot</internal-id>
+
+    <open-source>false</open-source>
+    <hidden>true</hidden>
+    <access>private</access>
+
+    <resources>
+        <resource>net/kullmar/rsbots/api/agility/</resource>
+    </resources>
+
+    <tags>
+        <tag>agility</tag>
+    </tags>
+</manifest>

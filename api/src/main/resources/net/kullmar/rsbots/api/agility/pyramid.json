@@ -1,0 +1,718 @@
+{
+  "areas": [
+    {
+      "id": "startingArea",
+      "bounds": {
+        "bottomLeft": [
+          3353,
+          2825
+        ],
+        "topRight": [
+          3358,
+          2829
+        ]
+      },
+      "plane": 0
+    }
+  ],
+  "boulders": [
+    {
+      "id": 1,
+      "areas": [
+        {
+          "id": "areaBeforeBoulder",
+          "bounds": {
+            "bottomLeft": [
+              3367,
+              2844
+            ],
+            "topRight": [
+              3375,
+              2852
+            ]
+          }
+        },
+        {
+          "id": "blockingArea",
+          "bounds": {
+            "bottomLeft": [
+              3374,
+              2847
+            ],
+            "topRight": [
+              3375,
+              2848
+            ]
+          }
+        },
+        {
+          "id": "waitingArea",
+          "bounds": {
+            "bottomLeft": [
+              3374,
+              2849
+            ],
+            "topRight": [
+              3375,
+              2849
+            ]
+          }
+        }
+      ],
+      "plane": 1
+    },
+    {
+      "id": 2,
+      "areas": [
+        {
+          "id": "areaBeforeBoulder",
+          "bounds": {
+            "bottomLeft": [
+              3367,
+              2844
+            ],
+            "topRight": [
+              3375,
+              2852
+            ]
+          }
+        },
+        {
+          "id": "blockingArea",
+          "bounds": {
+            "bottomLeft": [
+              3374,
+              2847
+            ],
+            "topRight": [
+              3375,
+              2848
+            ]
+          }
+        },
+        {
+          "id": "waitingArea",
+          "bounds": {
+            "bottomLeft": [
+              3374,
+              2849
+            ],
+            "topRight": [
+              3375,
+              2849
+            ]
+          }
+        }
+      ],
+      "plane": 3
+    }
+  ],
+  "obstacles": {
+    "actions": [
+      "Climb-up",
+      "Climb-over",
+      "Cross",
+      "Jump",
+      "Enter"
+    ],
+    "names": [
+      "Stairs",
+      "Low wall",
+      "Ledge",
+      "Pyramid block",
+      "Plank",
+      "Gap",
+      "Climbing rocks",
+      "Doorway"
+    ]
+  },
+  "pyramidLevels": [
+    {
+      "level": 1,
+      "plane": 1,
+      "areasByObstacle": [
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3354,
+              2833
+            ],
+            "topRight": [
+              3355,
+              2849
+            ]
+          },
+          "obstacle": {
+            "name": "Low wall",
+            "action": "Climb-over",
+            "id": 10865
+          }
+        },
+        {
+          "shape": {
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3354,
+                  2850
+                ],
+                "topRight": [
+                  3355,
+                  2852
+                ]
+              },
+              {
+                "bottomLeft": [
+                  3356,
+                  2851
+                ],
+                "topRight": [
+                  3367,
+                  2852
+                ]
+              }
+            ]
+          },
+          "obstacle": {
+            "name": "Ledge",
+            "action": "Cross",
+            "id": 10860
+          }
+        },
+        {
+          "shape": {
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3368,
+                  2851
+                ],
+                "topRight": [
+                  3375,
+                  2852
+                ]
+              },
+              {
+                "bottomLeft": [
+                  3374,
+                  2841
+                ],
+                "topRight": [
+                  3375,
+                  2850
+                ]
+              }
+            ]
+          },
+          "obstacle": {
+            "name": "Plank",
+            "action": "Cross",
+            "id": 10868
+          }
+        },
+        {
+          "shape": {
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3374,
+                  2831
+                ],
+                "topRight": [
+                  3375,
+                  2840
+                ]
+              },
+              {
+                "bottomLeft": [
+                  3368,
+                  2831
+                ],
+                "topRight": [
+                  3373,
+                  2832
+                ]
+              }
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Cross",
+            "id": 10882
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3360,
+              2831
+            ],
+            "topRight": [
+              3367,
+              2832
+            ]
+          },
+          "obstacle": {
+            "name": "Ledge",
+            "action": "Cross",
+            "id": 10887
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3356,
+              2831
+            ],
+            "topRight": [
+              3359,
+              2832
+            ]
+          },
+          "obstacle": {
+            "name": "Stairs",
+            "action": "Climb-up",
+            "id": 10857
+          }
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "plane": 2,
+      "areasByObstacle": [
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3356,
+              2835
+            ],
+            "topRight": [
+              3357,
+              2840
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Cross",
+            "id": 10884
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3356,
+              2841
+            ],
+            "topRight": [
+              3357,
+              2848
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Jump",
+            "id": 10859
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3356,
+              2849
+            ],
+            "topRight": [
+              3363,
+              2850
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Cross",
+            "id": 10861
+          }
+        },
+        {
+          "shape": {
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3364,
+                  2849
+                ],
+                "topRight": [
+                  3373,
+                  2850
+                ]
+              },
+              {
+                "bottomLeft": [
+                  3372,
+                  2837
+                ],
+                "topRight": [
+                  3373,
+                  2848
+                ]
+              }
+            ]
+          },
+          "obstacle": {
+            "obstacle": {
+              "name": "Ledge",
+              "action": "Cross",
+              "id": 10860
+            }
+          }
+        },
+        {
+          "shape": {
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3372,
+                  2833
+                ],
+                "topRight": [
+                  3373,
+                  2836
+                ]
+              },
+              {
+                "bottomLeft": [
+                  3370,
+                  2833
+                ],
+                "topRight": [
+                  3371,
+                  2834
+                ]
+              }
+            ]
+          },
+          "obstacle": {
+            "name": "Low wall",
+            "action": "Climb-over",
+            "id": 10865
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3364,
+              2833
+            ],
+            "topRight": [
+              3369,
+              2834
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Jump",
+            "id": 10859
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3358,
+              2833
+            ],
+            "topRight": [
+              3363,
+              2834
+            ]
+          },
+          "obstacle": {
+            "name": "Stairs",
+            "action": "Climb-up",
+            "id": 10857
+          }
+        }
+      ]
+    },
+    {
+      "level": 3,
+      "plane": 3,
+      "areasByObstacle": [
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3358,
+              2837
+            ],
+            "topRight": [
+              3359,
+              2839
+            ]
+          },
+          "obstacle": {
+            "name": "Low wall",
+            "action": "Climb-over",
+            "id": 10865
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3358,
+              2840
+            ],
+            "topRight": [
+              3359,
+              2846
+            ]
+          },
+          "obstacle": {
+            "name": "Ledge",
+            "action": "Cross",
+            "id": 10888
+          }
+        },
+        {
+          "shape": {
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3358,
+                  2847
+                ],
+                "topRight": [
+                  3371,
+                  2848
+                ]
+              },
+              {
+                "bottomLeft": [
+                  3370,
+                  2841
+                ],
+                "topRight": [
+                  3371,
+                  2846
+                ]
+              }
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Jump",
+            "id": 10859
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3370,
+              2835
+            ],
+            "topRight": [
+              3371,
+              2840
+            ]
+          },
+          "obstacle": {
+            "name": "Plank",
+            "action": "Cross",
+            "id": 10868
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3360,
+              2835
+            ],
+            "topRight": [
+              3369,
+              2836
+            ]
+          },
+          "obstacle": {
+            "name": "Stairs",
+            "action": "Climb-up",
+            "id": 10857
+          }
+        }
+      ]
+    },
+    {
+      "level": 4,
+      "plane": 2,
+      "areasByObstacle": [
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3040,
+              4695
+            ],
+            "topRight": [
+              3041,
+              4698
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Jump",
+            "id": 10859
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3040,
+              4699
+            ],
+            "topRight": [
+              3041,
+              4702
+            ]
+          },
+          "obstacle": {
+            "name": "Low wall",
+            "action": "Climb-over",
+            "id": 10865
+          }
+        },
+        {
+          "shape": {
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3042,
+                  4701
+                ],
+                "topRight": [
+                  3049,
+                  4702
+                ]
+              },
+              {
+                "bottomLeft": [
+                  3048,
+                  4695
+                ],
+                "topRight": [
+                  3049,
+                  4700
+                ]
+              }
+            ]
+          },
+          "obstacle": {
+            "name": "Gap",
+            "action": "Jump",
+            "id": 10859
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3047,
+              4693
+            ],
+            "topRight": [
+              3049,
+              4694
+            ]
+          },
+          "obstacle": {
+            "name": "Low wall",
+            "action": "Climb-over",
+            "id": 10865
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3042,
+              4693
+            ],
+            "topRight": [
+              3046,
+              4694
+            ]
+          },
+          "obstacle": {
+            "name": "Stairs",
+            "action": "Climb-up",
+            "id": 10867
+          }
+        }
+      ]
+    },
+    {
+      "level": 5,
+      "plane": 3,
+      "areasByObstacle": [
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3042,
+              4697
+            ],
+            "topRight": [
+              3043,
+              4698
+            ]
+          },
+          "obstacle": {
+            "name": "Climbing rocks",
+            "action": "Climb",
+            "id": 10851
+          }
+        },
+        {
+          "obstacle": {
+            "name": "Gap",
+            "action": "Jump",
+            "id": 10859
+          }
+        },
+        {
+          "shape": {
+            "type": "rectangle",
+            "bottomLeft": [
+              3044,
+              4695
+            ],
+            "topRight": [
+              3047,
+              4696
+            ]
+          },
+          "obstacle": {
+            "name": "Doorway",
+            "action": "Enter",
+            "id": 10856
+          }
+        }
+      ]
+    }
+  ]
+}
