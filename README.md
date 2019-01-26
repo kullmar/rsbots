@@ -1,2 +1,1 @@
-# bots
-OSRS bots/scripts
+# rsbots
