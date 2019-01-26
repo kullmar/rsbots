@@ -24,7 +24,7 @@
           "bounds": {
             "bottomLeft": [
               3367,
-              2844
+              2849
             ],
             "topRight": [
               3375,
@@ -68,12 +68,12 @@
           "id": "areaBeforeBoulder",
           "bounds": {
             "bottomLeft": [
-              3367,
-              2844
+              3358,
+              2847
             ],
             "topRight": [
-              3375,
-              2852
+              3365,
+              2848
             ]
           }
         },
@@ -81,11 +81,11 @@
           "id": "blockingArea",
           "bounds": {
             "bottomLeft": [
-              3374,
+              3366,
               2847
             ],
             "topRight": [
-              3375,
+              3367,
               2848
             ]
           }
@@ -94,12 +94,12 @@
           "id": "waitingArea",
           "bounds": {
             "bottomLeft": [
-              3374,
-              2849
+              3365,
+              2847
             ],
             "topRight": [
-              3375,
-              2849
+              3365,
+              2848
             ]
           }
         }
@@ -368,11 +368,9 @@
             ]
           },
           "obstacle": {
-            "obstacle": {
-              "name": "Ledge",
-              "action": "Cross",
-              "id": 10860
-            }
+            "name": "Ledge",
+            "action": "Cross",
+            "id": 10860
           }
         },
         {
@@ -579,14 +577,22 @@
         },
         {
           "shape": {
-            "type": "rectangle",
-            "bottomLeft": [
-              3040,
-              4699
-            ],
-            "topRight": [
-              3041,
-              4702
+            "type": "compositeRectangle",
+            "rectangles": [
+              {
+                "bottomLeft": [
+                  3040,
+                  4699
+                ],
+                "topRight": [
+                  3041,
+                  4702
+                ]
+              },
+              {
+                "bottomLeft": [3042, 4701],
+                "topRight": [3042, 4702]
+              }
             ]
           },
           "obstacle": {
@@ -601,7 +607,7 @@
             "rectangles": [
               {
                 "bottomLeft": [
-                  3042,
+                  3043,
                   4701
                 ],
                 "topRight": [
@@ -669,31 +675,6 @@
       "level": 5,
       "plane": 3,
       "areasByObstacle": [
-        {
-          "shape": {
-            "type": "rectangle",
-            "bottomLeft": [
-              3042,
-              4697
-            ],
-            "topRight": [
-              3043,
-              4698
-            ]
-          },
-          "obstacle": {
-            "name": "Climbing rocks",
-            "action": "Climb",
-            "id": 10851
-          }
-        },
-        {
-          "obstacle": {
-            "name": "Gap",
-            "action": "Jump",
-            "id": 10859
-          }
-        },
         {
           "shape": {
             "type": "rectangle",

@@ -3,12 +3,14 @@ package net.kullmar.bots.agility.courses.pyramid;
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
+import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
 import net.kullmar.bots.agility.courses.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.pyramid.states.*;
+import net.kullmar.rsbots.api.agility.courses.data.ObstacleData;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -47,14 +49,34 @@ public class PyramidLogic implements CourseLogic {
     @Override
     public GameObject getNextObstacle() {
         Area currentArea = getCurrentObstacleArea();
+        if (isOnTopFloor()) {
+            if (!Inventory.contains("Pyramid top")) {
+                return GameObjects.getLoaded("Climbing rocks").nearest();
+            }
+            if (currentArea == null) {
+                return GameObjects.getLoaded("Gap").nearest();
+            }
+            return GameObjects.getLoaded("Doorway").first();
+
+        }
         if (currentArea == null) {
             Environment.getLogger().debug("Unable to determine current obstacle area at " + Objects.requireNonNull(Players.getLocal()).getPosition());
             return null;
         }
-        return GameObjects.newQuery().within(currentArea).ids(AREA_OBSTACLE_MAPPING.get(currentArea).getId())
-                .results().nearest();
-//        return GameObjects.newQuery().names(RMPyramidInfo.OBSTACLE_NAMES).surroundingsReachable().filter(
-//                gameObject -> !gameObject.equals(lastUsedObstacle)).results().nearest();
+        ObstacleData obstacleData = AREA_OBSTACLE_MAPPING.get(currentArea);
+        if (obstacleData == null) {
+            Environment.getLogger().debug("Could not find obstacle for current area");
+            return null;
+        }
+        if (obstacleData.getName().equals("Stairs")) {
+            return GameObjects.newQuery().names("Stairs").actions("Climb-up").results().nearest();
+        }
+        return GameObjects.newQuery().within(currentArea).names(obstacleData.getName()).actions(obstacleData.getAction()).results().nearest();
+    }
+
+    private boolean isOnTopFloor() {
+        return Objects.requireNonNull(Players.getLocal()).getPosition().getPlane() == 3 &&
+                !GameObjects.getLoaded("Doorway").isEmpty();
     }
 
     private Area getCurrentObstacleArea() {
@@ -63,7 +85,6 @@ public class PyramidLogic implements CourseLogic {
             return null;
         }
         return AREA_PER_OBSTACLE.stream().filter(area -> area.overlaps(local.getArea())).findAny().orElse(null);
-        // return AREA_PER_OBSTACLE.stream().filter(area -> area.contains(local, true)).findAny().orElse(null);
     }
 
     @Override

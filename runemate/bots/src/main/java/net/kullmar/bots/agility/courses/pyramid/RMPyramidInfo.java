@@ -51,6 +51,7 @@ public class RMPyramidInfo {
         WAITING_AREA_BEFORE_FIRST_MOVING_BLOCK = getRMAreaFromRectangle(waitingArea.getBounds(), plane);
         FIRST_MOVING_BLOCK_BLOCKING_AREA = getRMAreaFromRectangle(blockingArea.getBounds(), plane);
 
+        plane = BOULDER_DATA[1].getPlane();
         areaBeforeBoulder = getBoulderArea(2, "areaBeforeBoulder");
         waitingArea = getBoulderArea(2, "waitingArea");
         blockingArea = getBoulderArea(2, "blockingArea");

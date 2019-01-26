@@ -1,1 +1,2 @@
 # bots
+OSRS bots/scripts

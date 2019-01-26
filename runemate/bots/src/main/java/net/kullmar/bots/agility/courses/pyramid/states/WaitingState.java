@@ -1,9 +1,7 @@
 package net.kullmar.bots.agility.courses.pyramid.states;
 
 import com.runemate.game.api.hybrid.Environment;
-import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Npc;
-import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Npcs;
 import com.runemate.game.api.script.Execution;
 import net.kullmar.bots.agility.courses.CourseLogic;
@@ -25,7 +23,8 @@ public class WaitingState extends State {
             return;
         }
         Environment.getLogger().debug("Waiting for block to be in blocking position");
-        if (Execution.delayUntil(() -> RMPyramidInfo.FIRST_MOVING_BLOCK_BLOCKING_AREA.containsAllOf(movingBlock),
+        if (Execution.delayUntil(() -> RMPyramidInfo.FIRST_MOVING_BLOCK_BLOCKING_AREA.containsAllOf(movingBlock) ||
+                RMPyramidInfo.SECOND_MOVING_BLOCK_BLOCKING_AREA.containsAllOf(movingBlock),
                 10000)) {
             Environment.getLogger().debug("Block is in blocking position - changing to interacting state");
             courseLogic.updateState(INTERACTING_STATE);
