@@ -1,0 +1,25 @@
+<manifest>
+    <main-class>net.kullmar.bots.smithing.SmithingBot</main-class>
+    <name>Kullmar's Smithing Bot</name>
+    <tag-line>In development</tag-line>
+    <description>blah</description>
+    <version>0.0.1</version>
+
+    <compatibility>
+        <game>OSRS</game>
+    </compatibility>
+
+    <categories>
+        <category>Smithing</category>
+    </categories>
+
+    <internal-id>SmithingBot</internal-id>
+
+    <open-source>false</open-source>
+    <hidden>true</hidden>
+    <access>private</access>
+
+    <tags>
+        <tag>smithing</tag>
+    </tags>
+</manifest>

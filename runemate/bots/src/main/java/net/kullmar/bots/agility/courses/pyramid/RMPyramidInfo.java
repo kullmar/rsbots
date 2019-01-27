@@ -4,6 +4,7 @@ import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.Coordinate;
 import net.kullmar.rsbots.api.GsonUtil;
 import net.kullmar.rsbots.api.agility.CourseInfo;
+import net.kullmar.rsbots.api.agility.courses.data.AreaData;
 import net.kullmar.rsbots.api.agility.courses.data.ObstacleData;
 import net.kullmar.rsbots.api.agility.courses.data.RectangleData;
 import net.kullmar.rsbots.api.agility.courses.data.pyramid.*;
@@ -29,6 +30,8 @@ public class RMPyramidInfo {
 
     public static final List<Area> AREA_PER_OBSTACLE = new ArrayList<>();
     public static final Map<Area, ObstacleData> AREA_OBSTACLE_MAPPING = new HashMap<>();
+
+    public static final Map<String, Area> NON_PYRAMID_AREAS = new HashMap<>();
 
     static {
         InputStream jsonFile =  CourseInfo.class.getResourceAsStream("pyramid.json");
@@ -76,6 +79,10 @@ public class RMPyramidInfo {
                 }
 
             }
+        }
+
+        for (AreaData areaData : courseData.getAreas()) {
+            NON_PYRAMID_AREAS.put(areaData.getId(), getRMAreaFromRectangle(areaData.getBounds(), areaData.getPlane()));
         }
     }
 

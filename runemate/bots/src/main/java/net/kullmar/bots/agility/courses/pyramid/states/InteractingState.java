@@ -5,7 +5,6 @@ import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.entities.definitions.GameObjectDefinition;
 import com.runemate.game.api.hybrid.local.Skill;
-import com.runemate.game.api.hybrid.local.hud.interfaces.Health;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.listeners.SkillListener;
@@ -13,10 +12,9 @@ import com.runemate.game.api.script.framework.listeners.events.SkillEvent;
 import net.kullmar.bots.agility.courses.CourseLogic;
 
 import static com.runemate.game.api.hybrid.Environment.getLogger;
-import static net.kullmar.bots.agility.courses.pyramid.states.PyramidState.IDLE_STATE;
 import static net.kullmar.bots.api.Interaction.interactWithAndTurnCamera;
 
-public class InteractingState extends State implements SkillListener {
+public class InteractingState extends AgilityState implements SkillListener {
     private GameObject approachedObstacle;
     private boolean isInteracting = false;
     private int lastPlane;
@@ -32,13 +30,13 @@ public class InteractingState extends State implements SkillListener {
         GameObject nextObstacle = courseLogic.getNextObstacle();
         if (nextObstacle == null) {
             getLogger().debug("Unable to determine next obstacle");
-            courseLogic.updateState(IDLE_STATE);
+            courseLogic.updateState(IdleState.class);
             return;
         }
         String action = getObstacleAction(nextObstacle);
         if (action == null) {
             getLogger().debug("No action found for obstacle");
-            courseLogic.updateState(IDLE_STATE);
+            courseLogic.updateState(IdleState.class);
             return;
         }
         Environment.getLogger().debug("Next obstacle: " + action + " " + nextObstacle);
@@ -53,8 +51,8 @@ public class InteractingState extends State implements SkillListener {
             return;
         }
         getLogger().debug("Clicked obstacle");
-        if (Execution.delayWhile(this::isInteracting, local::isMoving, 1200, 1800)) {
-            courseLogic.updateState(IDLE_STATE);
+        if (Execution.delayWhile(this::isInteracting, local::isMoving, 2000, 3000)) {
+            courseLogic.updateState(IdleState.class);
         }
         isInteracting = false;
     }

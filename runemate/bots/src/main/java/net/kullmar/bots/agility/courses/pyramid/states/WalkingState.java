@@ -5,7 +5,6 @@ import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.location.navigation.basic.ViewportPath;
-import com.runemate.game.api.hybrid.location.navigation.cognizant.RegionPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.Execution;
 import net.kullmar.bots.agility.courses.CourseLogic;
@@ -13,10 +12,7 @@ import net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo;
 
 import java.util.Objects;
 
-import static net.kullmar.bots.agility.courses.pyramid.states.PyramidState.IDLE_STATE;
-import static net.kullmar.bots.agility.courses.pyramid.states.PyramidState.WAITING_STATE;
-
-public class WalkingState extends State {
+public class WalkingState extends AgilityState {
     public WalkingState(CourseLogic courseLogic) {
         super(courseLogic);
     }
@@ -28,13 +24,14 @@ public class WalkingState extends State {
             approachingArea = getWaitingArea();
         }
         if (approachingArea == null) {
-            courseLogic.updateState(IDLE_STATE);
+            courseLogic.updateState(IdleState.class);
+            return;
         }
-        BresenhamPath bresenhamPath = BresenhamPath.buildTo(approachingArea);
+        BresenhamPath bresenhamPath = BresenhamPath.buildTo(approachingArea.getRandomCoordinate());
         ViewportPath path = ViewportPath.convert(bresenhamPath);
         if (path == null) {
             Environment.getLogger().debug("Failed to build path to waiting area");
-            courseLogic.updateState(IDLE_STATE);
+            courseLogic.updateState(IdleState.class);
             return;
         }
         if (path.step()) {
@@ -43,7 +40,7 @@ public class WalkingState extends State {
             if (Execution.delayUntil(() -> !Objects.requireNonNull(Players.getLocal()).isMoving(), 10000)) {
                 if (isPlayerInWaitingArea()) {
                     Environment.getLogger().debug("Arrived at waiting area");
-                    courseLogic.updateState(WAITING_STATE);
+                    courseLogic.updateState(WaitingState.class);
                 }
             }
         }

@@ -6,10 +6,7 @@ import net.kullmar.bots.agility.courses.CourseLogic;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-import static net.kullmar.bots.agility.courses.pyramid.states.PyramidState.INTERACTING_STATE;
-import static net.kullmar.bots.agility.courses.pyramid.states.PyramidState.WALKING_STATE;
-
-public class IdleState extends State {
+public class IdleState extends AgilityState {
     public IdleState(CourseLogic courseLogic) {
         super(courseLogic);
     }
@@ -21,12 +18,14 @@ public class IdleState extends State {
             Environment.getLogger().debug("Sleeping for " + idleTime + " ms");
             Execution.delay(idleTime);
         }
-        if (courseLogic.getState(WALKING_STATE).validate()) {
+        if (courseLogic.getState(SellingState.class).validate()) {
+            courseLogic.updateState(SellingState.class);
+        } else if (courseLogic.getState(WalkingState.class).validate()) {
             Environment.getLogger().debug("Player is in area before moving block");
-            courseLogic.updateState(WALKING_STATE);
+            courseLogic.updateState(WalkingState.class);
         }
         else {
-            courseLogic.updateState(INTERACTING_STATE);
+            courseLogic.updateState(InteractingState.class);
         }
     }
 }

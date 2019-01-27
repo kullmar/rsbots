@@ -1,5 +1,7 @@
 package net.kullmar.bots.agility.courses.pyramid;
 
+import com.google.common.collect.ClassToInstanceMap;
+import com.google.common.collect.MutableClassToInstanceMap;
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
@@ -7,29 +9,30 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
-import net.kullmar.bots.agility.courses.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.pyramid.states.*;
 import net.kullmar.rsbots.api.agility.courses.data.ObstacleData;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
-import static net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo.AREA_OBSTACLE_MAPPING;
-import static net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo.AREA_PER_OBSTACLE;
+import static net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo.*;
 
 public class PyramidLogic implements CourseLogic {
-    private Map<PyramidState, State> states = new HashMap<>();
-    private State currentState;
+    private ClassToInstanceMap<AgilityState> states = MutableClassToInstanceMap.create();
+    private AgilityState currentState;
     private GameObject lastUsedObstacle;
 
     public PyramidLogic() {
-        states.put(PyramidState.IDLE_STATE, new IdleState(this));
-        states.put(PyramidState.INTERACTING_STATE, new InteractingState(this));
-        states.put(PyramidState.WAITING_STATE, new WaitingState(this));
-        states.put(PyramidState.WALKING_STATE, new WalkingState(this));
-        currentState = states.get(PyramidState.IDLE_STATE);
+        initStates();
+        currentState = states.get(IdleState.class);
+    }
+
+    private void initStates() {
+        states.putInstance(IdleState.class, new IdleState(this));
+        states.put(InteractingState.class, new InteractingState(this));
+        states.put(WaitingState.class, new WaitingState(this));
+        states.put(WalkingState.class, new WalkingState(this));
+        states.put(SellingState.class, new SellingState(this));
     }
 
     public void update() {
@@ -37,13 +40,13 @@ public class PyramidLogic implements CourseLogic {
     }
 
     @Override
-    public State getCurrentState() {
+    public AgilityState getCurrentState() {
         return currentState;
     }
 
     @Override
-    public State getState(AgilityState agilityState) {
-        return states.get(agilityState);
+    public AgilityState getState(Class<? extends AgilityState> state) {
+        return states.getInstance(state);
     }
 
     @Override
@@ -57,26 +60,42 @@ public class PyramidLogic implements CourseLogic {
                 return GameObjects.getLoaded("Gap").nearest();
             }
             return GameObjects.getLoaded("Doorway").first();
-
         }
+
+        if (isOnGroundFloor()) {
+            GameObject stairs = GameObjects.newQuery().names("Stairs").surroundingsReachable().results().nearest();
+            if (stairs != null) {
+                return stairs;
+            }
+            Area lowerClimbingRocksArea = NON_PYRAMID_AREAS.get("lowerClimbingRocks");
+            return GameObjects.newQuery().within(lowerClimbingRocksArea).names("Climbing rocks").results().nearest();
+        }
+
         if (currentArea == null) {
             Environment.getLogger().debug("Unable to determine current obstacle area at " + Objects.requireNonNull(Players.getLocal()).getPosition());
             return null;
         }
+
         ObstacleData obstacleData = AREA_OBSTACLE_MAPPING.get(currentArea);
         if (obstacleData == null) {
             Environment.getLogger().debug("Could not find obstacle for current area");
             return null;
         }
+
         if (obstacleData.getName().equals("Stairs")) {
             return GameObjects.newQuery().names("Stairs").actions("Climb-up").results().nearest();
         }
+
         return GameObjects.newQuery().within(currentArea).names(obstacleData.getName()).actions(obstacleData.getAction()).results().nearest();
     }
 
     private boolean isOnTopFloor() {
         return Objects.requireNonNull(Players.getLocal()).getPosition().getPlane() == 3 &&
                 !GameObjects.getLoaded("Doorway").isEmpty();
+    }
+
+    private boolean isOnGroundFloor() {
+        return Objects.requireNonNull(Players.getLocal()).getPosition().getPlane() == 0;
     }
 
     private Area getCurrentObstacleArea() {
@@ -93,7 +112,7 @@ public class PyramidLogic implements CourseLogic {
     }
 
     @Override
-    public void updateState(AgilityState state) {
-        this.currentState = states.get(state);
+    public void updateState(Class<? extends AgilityState> state) {
+        this.currentState = states.getInstance(state);
     }
 }

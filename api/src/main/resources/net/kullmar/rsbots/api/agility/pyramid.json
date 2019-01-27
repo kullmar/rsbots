@@ -13,6 +13,34 @@
         ]
       },
       "plane": 0
+    },
+    {
+      "id": "npcArea",
+      "bounds": {
+        "bottomLeft": [
+          3340,
+          2824
+        ],
+        "topRight": [
+          3347,
+          2829
+        ]
+      },
+      "plane": 0
+    },
+    {
+      "id": "lowerClimbingRocks",
+      "bounds": {
+        "bottomLeft": [
+          3348,
+          2825
+        ],
+        "topRight": [
+          3353,
+          2830
+        ]
+      },
+      "plane": 0
     }
   ],
   "boulders": [

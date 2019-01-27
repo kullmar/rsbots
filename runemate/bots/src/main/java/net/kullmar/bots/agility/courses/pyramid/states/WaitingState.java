@@ -7,10 +7,7 @@ import com.runemate.game.api.script.Execution;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo;
 
-import static net.kullmar.bots.agility.courses.pyramid.states.PyramidState.IDLE_STATE;
-import static net.kullmar.bots.agility.courses.pyramid.states.PyramidState.INTERACTING_STATE;
-
-public class WaitingState extends State {
+public class WaitingState extends AgilityState {
     public WaitingState(CourseLogic courseLogic) {
         super(courseLogic);
     }
@@ -27,9 +24,10 @@ public class WaitingState extends State {
                 RMPyramidInfo.SECOND_MOVING_BLOCK_BLOCKING_AREA.containsAllOf(movingBlock),
                 10000)) {
             Environment.getLogger().debug("Block is in blocking position - changing to interacting state");
-            courseLogic.updateState(INTERACTING_STATE);
+            Execution.delay(200, 1000);
+            courseLogic.updateState(InteractingState.class);
             return;
         }
-        courseLogic.updateState(IDLE_STATE);
+        courseLogic.updateState(IdleState.class);
     }
 }
