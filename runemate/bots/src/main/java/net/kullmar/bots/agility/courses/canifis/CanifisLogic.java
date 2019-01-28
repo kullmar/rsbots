@@ -7,7 +7,7 @@ import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.hybrid.util.Resources;
-import net.kullmar.bots.agility.AgilityAction;
+import net.kullmar.bots.legacy.AgilityAction;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.rsbots.api.agility.courses.data.AreaData;

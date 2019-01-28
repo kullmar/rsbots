@@ -24,15 +24,15 @@ public class PyramidLogic implements CourseLogic {
 
     public PyramidLogic() {
         initStates();
-        currentState = states.get(IdleState.class);
+        currentState = states.get(PyramidIdleState.class);
     }
 
     private void initStates() {
-        states.putInstance(IdleState.class, new IdleState(this));
-        states.put(InteractingState.class, new InteractingState(this));
-        states.put(WaitingState.class, new WaitingState(this));
-        states.put(WalkingState.class, new WalkingState(this));
-        states.put(SellingState.class, new SellingState(this));
+        states.putInstance(PyramidIdleState.class, new PyramidIdleState(this));
+        states.put(PyramidInteractingState.class, new PyramidInteractingState(this));
+        states.put(PyramidWaitingState.class, new PyramidWaitingState(this));
+        states.put(PyramidWalkingState.class, new PyramidWalkingState(this));
+        states.put(PyramidSellingState.class, new PyramidSellingState(this));
     }
 
     public void update() {

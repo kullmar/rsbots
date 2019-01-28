@@ -1,4 +1,4 @@
-package net.kullmar.bots.agility;
+package net.kullmar.bots.legacy;
 
 public enum AgilityAction {
     CLIMB("Climb"),

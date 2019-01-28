@@ -1,4 +1,4 @@
-package net.kullmar.bots.agility.branches;
+package net.kullmar.bots.legacy.branches;
 
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.hybrid.entities.GameObject;
@@ -6,9 +6,9 @@ import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.framework.tree.BranchTask;
 import com.runemate.game.api.script.framework.tree.TreeTask;
-import net.kullmar.bots.agility.AgilityBot;
-import net.kullmar.bots.agility.leafs.InteractWithNextObstacle;
-import net.kullmar.bots.agility.leafs.WalkToStartingArea;
+import net.kullmar.bots.legacy.AgilityBot;
+import net.kullmar.bots.legacy.leafs.InteractWithNextObstacle;
+import net.kullmar.bots.legacy.leafs.WalkToStartingArea;
 
 public class InteractOrWalkBranch extends BranchTask {
     private AgilityBot bot = (AgilityBot) Environment.getBot();

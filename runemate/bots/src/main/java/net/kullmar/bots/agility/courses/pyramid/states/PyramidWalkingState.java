@@ -13,8 +13,8 @@ import net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo;
 
 import java.util.Objects;
 
-public class WalkingState extends AgilityState {
-    public WalkingState(CourseLogic courseLogic) {
+public class PyramidWalkingState extends AgilityState {
+    public PyramidWalkingState(CourseLogic courseLogic) {
         super(courseLogic);
     }
 
@@ -25,14 +25,14 @@ public class WalkingState extends AgilityState {
             approachingArea = getWaitingArea();
         }
         if (approachingArea == null) {
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(PyramidIdleState.class);
             return;
         }
         BresenhamPath bresenhamPath = BresenhamPath.buildTo(approachingArea.getRandomCoordinate());
         ViewportPath path = ViewportPath.convert(bresenhamPath);
         if (path == null) {
             Environment.getLogger().debug("Failed to build path to waiting area");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(PyramidIdleState.class);
             return;
         }
         if (path.step()) {
@@ -41,7 +41,7 @@ public class WalkingState extends AgilityState {
             if (Execution.delayUntil(() -> !Objects.requireNonNull(Players.getLocal()).isMoving(), 10000)) {
                 if (isPlayerInWaitingArea()) {
                     Environment.getLogger().debug("Arrived at waiting area");
-                    courseLogic.updateState(WaitingState.class);
+                    courseLogic.updateState(PyramidWaitingState.class);
                 }
             }
         }

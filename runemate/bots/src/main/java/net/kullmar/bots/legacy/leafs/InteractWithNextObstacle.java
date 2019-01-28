@@ -1,4 +1,4 @@
-package net.kullmar.bots.agility.leafs;
+package net.kullmar.bots.legacy.leafs;
 
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.hybrid.entities.GameObject;

@@ -8,8 +8,8 @@ import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo;
 
-public class WaitingState extends AgilityState {
-    public WaitingState(CourseLogic courseLogic) {
+public class PyramidWaitingState extends AgilityState {
+    public PyramidWaitingState(CourseLogic courseLogic) {
         super(courseLogic);
     }
 
@@ -26,9 +26,9 @@ public class WaitingState extends AgilityState {
                 10000)) {
             Environment.getLogger().debug("Block is in blocking position - changing to interacting state");
             Execution.delay(200, 1000);
-            courseLogic.updateState(InteractingState.class);
+            courseLogic.updateState(PyramidInteractingState.class);
             return;
         }
-        courseLogic.updateState(IdleState.class);
+        courseLogic.updateState(PyramidIdleState.class);
     }
 }

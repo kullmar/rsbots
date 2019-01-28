@@ -8,8 +8,8 @@ import net.kullmar.bots.agility.courses.CourseLogic;
 
 import static com.runemate.game.api.hybrid.Environment.getLogger;
 
-public class MarkState extends AgilityState {
-    public MarkState(CourseLogic courseLogic) {
+public class RooftopMarkState extends AgilityState {
+    public RooftopMarkState(CourseLogic courseLogic) {
         super(courseLogic);
     }
 
@@ -18,7 +18,7 @@ public class MarkState extends AgilityState {
         GroundItem markOfGrace = GroundItems.newQuery().names("Mark of grace").reachable().results().first();
         if (markOfGrace == null) {
             getLogger().debug("No mark of grace reachable");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(RooftopIdleState.class);
             return;
         }
         if (!markOfGrace.interact("Take")) {
@@ -27,7 +27,7 @@ public class MarkState extends AgilityState {
         }
         getLogger().debug("Taking mark of grace");
         if (Execution.delayWhile(markOfGrace::isValid, 4000, 5000)) {
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(RooftopIdleState.class);
         }
     }
 

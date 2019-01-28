@@ -7,11 +7,13 @@ import net.kullmar.bots.agility.courses.pyramid.PyramidLogic;
 import net.kullmar.bots.agility.courses.rooftops.RooftopLogic;
 
 public class AgilityBotFSM extends LoopingBot {
+    private AgilitySession session = new AgilitySession();
     private CourseLogic courseLogic;
 
     @Override
     public void onStart(String... args) {
         courseLogic = new RooftopLogic();
+        session.start();
         setLoopDelay(200, 400);
         Mouse.setPathGenerator(Mouse.MLP_PATH_GENERATOR);
     }

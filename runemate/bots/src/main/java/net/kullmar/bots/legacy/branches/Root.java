@@ -1,10 +1,10 @@
-package net.kullmar.bots.agility.branches;
+package net.kullmar.bots.legacy.branches;
 
 import com.runemate.game.api.hybrid.entities.GroundItem;
 import com.runemate.game.api.hybrid.region.GroundItems;
 import com.runemate.game.api.script.framework.tree.BranchTask;
 import com.runemate.game.api.script.framework.tree.TreeTask;
-import net.kullmar.bots.agility.leafs.TakeMarkOfGrace;
+import net.kullmar.bots.legacy.leafs.TakeMarkOfGrace;
 
 public class Root extends BranchTask {
     private GroundItem mark;

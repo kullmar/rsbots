@@ -1,4 +1,4 @@
-package net.kullmar.bots.agility.courses.rooftops.states;
+package net.kullmar.bots.agility.courses.pyramid.states;
 
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.hybrid.entities.GameObject;
@@ -13,12 +13,13 @@ import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 
 import static com.runemate.game.api.hybrid.Environment.getLogger;
+import static net.kullmar.bots.api.Interaction.interactWithAndTurnCamera;
 
-public class InteractingState extends AgilityState implements SkillListener {
+public class PyramidInteractingState extends AgilityState implements SkillListener {
     private boolean isInteracting = false;
     private int lastPlane;
 
-    public InteractingState(CourseLogic courseLogic) {
+    public PyramidInteractingState(CourseLogic courseLogic) {
         super(courseLogic);
         Environment.getBot().getEventDispatcher().addListener(this);
         lastPlane = Players.getLocal() == null ? 0 : Players.getLocal().getPosition().getPlane();
@@ -29,17 +30,17 @@ public class InteractingState extends AgilityState implements SkillListener {
         GameObject nextObstacle = courseLogic.getNextObstacle();
         if (nextObstacle == null) {
             getLogger().debug("Unable to determine next obstacle");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(PyramidIdleState.class);
             return;
         }
         String action = getObstacleAction(nextObstacle);
         if (action == null) {
             getLogger().debug("No action found for obstacle");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(PyramidIdleState.class);
             return;
         }
         Environment.getLogger().debug("Next obstacle: " + action + " " + nextObstacle);
-        if (!nextObstacle.interact(action)) {
+        if (!interactWithAndTurnCamera(nextObstacle, action)) {
             getLogger().debug("Failed to click obstacle");
             return;
         }
@@ -50,7 +51,7 @@ public class InteractingState extends AgilityState implements SkillListener {
         }
         getLogger().debug("Clicked obstacle");
         if (Execution.delayWhile(this::isInteracting, local::isMoving, 2000, 3000)) {
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(PyramidIdleState.class);
         }
         isInteracting = false;
     }

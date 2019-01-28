@@ -1,8 +1,8 @@
-package net.kullmar.bots.agility;
+package net.kullmar.bots.legacy;
 
 import com.runemate.game.api.script.framework.tree.TreeBot;
 import com.runemate.game.api.script.framework.tree.TreeTask;
-import net.kullmar.bots.agility.branches.Root;
+import net.kullmar.bots.legacy.branches.Root;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.canifis.CanifisLogic;
 

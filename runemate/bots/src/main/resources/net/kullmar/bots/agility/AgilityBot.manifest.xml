@@ -1,5 +1,5 @@
 <manifest>
-    <main-class>net.kullmar.bots.agility.AgilityBot</main-class>
+    <main-class>net.kullmar.bots.legacy.AgilityBot</main-class>
     <name>Kullmar's Agility Bot</name>
     <tag-line>In development</tag-line>
     <description>Only Canifis atm</description>

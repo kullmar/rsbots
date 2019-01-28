@@ -1,4 +1,4 @@
-package net.kullmar.bots.agility.courses.pyramid.states;
+package net.kullmar.bots.agility.courses.rooftops.states;
 
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.hybrid.entities.GameObject;
@@ -13,16 +13,13 @@ import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 
 import static com.runemate.game.api.hybrid.Environment.getLogger;
-import static net.kullmar.bots.api.Interaction.interactWithAndTurnCamera;
 
-public class InteractingState extends AgilityState implements SkillListener {
+public class RooftopInteractingState extends AgilityState implements SkillListener {
     private boolean isInteracting = false;
-    private int lastPlane;
 
-    public InteractingState(CourseLogic courseLogic) {
+    public RooftopInteractingState(CourseLogic courseLogic) {
         super(courseLogic);
         Environment.getBot().getEventDispatcher().addListener(this);
-        lastPlane = Players.getLocal() == null ? 0 : Players.getLocal().getPosition().getPlane();
     }
 
     @Override
@@ -30,17 +27,17 @@ public class InteractingState extends AgilityState implements SkillListener {
         GameObject nextObstacle = courseLogic.getNextObstacle();
         if (nextObstacle == null) {
             getLogger().debug("Unable to determine next obstacle");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(RooftopIdleState.class);
             return;
         }
         String action = getObstacleAction(nextObstacle);
         if (action == null) {
             getLogger().debug("No action found for obstacle");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(RooftopIdleState.class);
             return;
         }
         Environment.getLogger().debug("Next obstacle: " + action + " " + nextObstacle);
-        if (!interactWithAndTurnCamera(nextObstacle, action)) {
+        if (!nextObstacle.interact(action)) {
             getLogger().debug("Failed to click obstacle");
             return;
         }
@@ -50,8 +47,9 @@ public class InteractingState extends AgilityState implements SkillListener {
             return;
         }
         getLogger().debug("Clicked obstacle");
-        if (Execution.delayWhile(this::isInteracting, local::isMoving, 2000, 3000)) {
-            courseLogic.updateState(IdleState.class);
+        if (Execution.delayWhile(this::isInteracting, () -> local.isMoving() || local.getAnimationId() != -1, 2000,
+                3000)) {
+            courseLogic.updateState(RooftopIdleState.class);
         }
         isInteracting = false;
     }
@@ -65,23 +63,15 @@ public class InteractingState extends AgilityState implements SkillListener {
     }
 
     private boolean isInteracting() {
-        if (hasChangedPlane()) {
+        if (hasTakenDamage()) {
             isInteracting = false;
         }
         return isInteracting;
     }
 
-    private boolean hasChangedPlane() {
-        Player local = Players.getLocal();
-        if (local == null) {
-            return false;
-        }
-        boolean differentPlane = false;
-        if (local.getPosition().getPlane() != lastPlane) {
-            differentPlane = true;
-        }
-        lastPlane = local.getPosition().getPlane();
-        return differentPlane;
+    private boolean hasTakenDamage() {
+        Player self = Players.getLocal();
+        return self != null && self.getHealthGauge() != null;
     }
 
     @Override

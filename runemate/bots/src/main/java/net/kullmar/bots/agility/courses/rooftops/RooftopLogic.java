@@ -7,10 +7,10 @@ import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.AgilityState;
-import net.kullmar.bots.agility.courses.rooftops.states.IdleState;
-import net.kullmar.bots.agility.courses.rooftops.states.InteractingState;
-import net.kullmar.bots.agility.courses.rooftops.states.MarkState;
-import net.kullmar.bots.agility.courses.rooftops.states.WalkingState;
+import net.kullmar.bots.agility.courses.rooftops.states.RooftopIdleState;
+import net.kullmar.bots.agility.courses.rooftops.states.RooftopInteractingState;
+import net.kullmar.bots.agility.courses.rooftops.states.RooftopMarkState;
+import net.kullmar.bots.agility.courses.rooftops.states.RooftopWalkingState;
 
 public class RooftopLogic implements CourseLogic {
     private RMRooftopInfo rooftopInfo = new SeersInfo();
@@ -18,11 +18,11 @@ public class RooftopLogic implements CourseLogic {
     private AgilityState currentState;
 
     public RooftopLogic() {
-        states.putInstance(IdleState.class, new IdleState(this));
-        states.putInstance(InteractingState.class, new InteractingState(this));
-        states.putInstance(MarkState.class, new MarkState(this));
-        states.putInstance(WalkingState.class, new WalkingState(this));
-        currentState = states.getInstance(IdleState.class);
+        states.putInstance(RooftopIdleState.class, new RooftopIdleState(this));
+        states.putInstance(RooftopInteractingState.class, new RooftopInteractingState(this));
+        states.putInstance(RooftopMarkState.class, new RooftopMarkState(this));
+        states.putInstance(RooftopWalkingState.class, new RooftopWalkingState(this));
+        currentState = states.getInstance(RooftopIdleState.class);
     }
 
     @Override

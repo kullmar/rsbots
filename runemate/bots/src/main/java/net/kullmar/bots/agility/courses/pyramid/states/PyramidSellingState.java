@@ -16,8 +16,8 @@ import net.kullmar.bots.agility.courses.CourseLogic;
 
 import static net.kullmar.bots.api.Interaction.interactWithAndTurnCamera;
 
-public class SellingState extends AgilityState {
-    public SellingState(CourseLogic courseLogic) {
+public class PyramidSellingState extends AgilityState {
+    public PyramidSellingState(CourseLogic courseLogic) {
         super(courseLogic);
     }
 
@@ -65,12 +65,12 @@ public class SellingState extends AgilityState {
         Npc npc = Npcs.newQuery().names("Simon Templeton").reachable().results().first();
         if (npc == null) {
             Environment.getLogger().warn("Could not find NPC");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(PyramidIdleState.class);
             return;
         }
         if (artifact == null) {
             Environment.getLogger().warn("Could not find artifact in inventory");
-            courseLogic.updateState(IdleState.class);
+            courseLogic.updateState(PyramidIdleState.class);
             return;
         }
         Camera.concurrentlyTurnTo(npc);
@@ -80,7 +80,7 @@ public class SellingState extends AgilityState {
             if (npc.interact("Use", "Pyramid top" + " -> " + npc.getName())) {
                 if (Execution.delayUntil(() -> !artifact.isValid(), 3000)) {
                     Environment.getLogger().debug("Sold artifact");
-                    courseLogic.updateState(IdleState.class);
+                    courseLogic.updateState(PyramidIdleState.class);
                 }
             }
         }
