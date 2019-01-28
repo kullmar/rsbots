@@ -1,14 +1,13 @@
 package net.kullmar.bots.agility.courses;
 
 import com.runemate.game.api.hybrid.entities.GameObject;
-import net.kullmar.bots.agility.courses.pyramid.states.AgilityState;
+import com.runemate.game.api.hybrid.location.Area;
+import net.kullmar.bots.agility.AgilityState;
 
 public interface CourseLogic {
     AgilityState getCurrentState();
-
     AgilityState getState(Class<? extends AgilityState> agilityState);
     GameObject getNextObstacle();
-    void setLastUsedObstacle(GameObject gameObject);
-
     void updateState(Class<? extends AgilityState> state);
+    Area getStartingArea();
 }

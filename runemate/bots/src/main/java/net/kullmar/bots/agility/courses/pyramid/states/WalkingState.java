@@ -7,6 +7,7 @@ import com.runemate.game.api.hybrid.location.navigation.basic.BresenhamPath;
 import com.runemate.game.api.hybrid.location.navigation.basic.ViewportPath;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.Execution;
+import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo;
 

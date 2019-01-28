@@ -1,4 +1,4 @@
-package net.kullmar.bots.agility.courses.pyramid.states;
+package net.kullmar.bots.agility.courses.rooftops.states;
 
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.hybrid.entities.GameObject;
@@ -13,7 +13,6 @@ import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 
 import static com.runemate.game.api.hybrid.Environment.getLogger;
-import static net.kullmar.bots.api.Interaction.interactWithAndTurnCamera;
 
 public class InteractingState extends AgilityState implements SkillListener {
     private boolean isInteracting = false;
@@ -40,7 +39,7 @@ public class InteractingState extends AgilityState implements SkillListener {
             return;
         }
         Environment.getLogger().debug("Next obstacle: " + action + " " + nextObstacle);
-        if (!interactWithAndTurnCamera(nextObstacle, action)) {
+        if (!nextObstacle.interact(action)) {
             getLogger().debug("Failed to click obstacle");
             return;
         }

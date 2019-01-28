@@ -9,7 +9,7 @@ import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.hybrid.util.Resources;
 import net.kullmar.bots.agility.AgilityAction;
 import net.kullmar.bots.agility.courses.CourseLogic;
-import net.kullmar.bots.agility.courses.pyramid.states.AgilityState;
+import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.rsbots.api.agility.courses.data.AreaData;
 import net.kullmar.rsbots.api.agility.courses.data.CanifisData;
 
@@ -56,7 +56,6 @@ public class CanifisLogic implements CourseLogic {
         return GameObjects.newQuery().within(bounds).actions(actionsArray).results().first();
     }
 
-    @Override
     public void setLastUsedObstacle(GameObject gameObject) {
 
     }
@@ -64,6 +63,11 @@ public class CanifisLogic implements CourseLogic {
     @Override
     public void updateState(Class<? extends AgilityState> state) {
 
+    }
+
+    @Override
+    public Area getStartingArea() {
+        return null;
     }
 
     private void initBounds() {

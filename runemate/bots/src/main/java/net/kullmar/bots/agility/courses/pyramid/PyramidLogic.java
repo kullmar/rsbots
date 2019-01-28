@@ -9,6 +9,7 @@ import com.runemate.game.api.hybrid.local.hud.interfaces.Inventory;
 import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.region.GameObjects;
 import com.runemate.game.api.hybrid.region.Players;
+import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.pyramid.states.*;
 import net.kullmar.rsbots.api.agility.courses.data.ObstacleData;
@@ -20,7 +21,6 @@ import static net.kullmar.bots.agility.courses.pyramid.RMPyramidInfo.*;
 public class PyramidLogic implements CourseLogic {
     private ClassToInstanceMap<AgilityState> states = MutableClassToInstanceMap.create();
     private AgilityState currentState;
-    private GameObject lastUsedObstacle;
 
     public PyramidLogic() {
         initStates();
@@ -107,12 +107,12 @@ public class PyramidLogic implements CourseLogic {
     }
 
     @Override
-    public void setLastUsedObstacle(GameObject gameObject) {
-        lastUsedObstacle = gameObject;
+    public void updateState(Class<? extends AgilityState> state) {
+        this.currentState = states.getInstance(state);
     }
 
     @Override
-    public void updateState(Class<? extends AgilityState> state) {
-        this.currentState = states.getInstance(state);
+    public Area getStartingArea() {
+        return null;
     }
 }

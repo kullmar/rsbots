@@ -4,13 +4,14 @@ import com.runemate.game.api.hybrid.input.Mouse;
 import com.runemate.game.api.script.framework.LoopingBot;
 import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.pyramid.PyramidLogic;
+import net.kullmar.bots.agility.courses.rooftops.RooftopLogic;
 
 public class AgilityBotFSM extends LoopingBot {
     private CourseLogic courseLogic;
 
     @Override
     public void onStart(String... args) {
-        courseLogic = new PyramidLogic();
+        courseLogic = new RooftopLogic();
         setLoopDelay(200, 400);
         Mouse.setPathGenerator(Mouse.MLP_PATH_GENERATOR);
     }

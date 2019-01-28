@@ -2,6 +2,7 @@ package net.kullmar.bots.agility.courses.pyramid.states;
 
 import com.runemate.game.api.hybrid.Environment;
 import com.runemate.game.api.script.Execution;
+import net.kullmar.bots.agility.AgilityState;
 import net.kullmar.bots.agility.courses.CourseLogic;
 
 import java.util.concurrent.ThreadLocalRandom;
