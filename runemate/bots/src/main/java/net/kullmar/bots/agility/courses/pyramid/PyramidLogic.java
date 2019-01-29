@@ -110,9 +110,4 @@ public class PyramidLogic implements CourseLogic {
     public void updateState(Class<? extends AgilityState> state) {
         this.currentState = states.getInstance(state);
     }
-
-    @Override
-    public Area getStartingArea() {
-        return null;
-    }
 }

@@ -3,10 +3,9 @@ package net.kullmar.bots.agility.courses.rooftops;
 import com.google.common.collect.ClassToInstanceMap;
 import com.google.common.collect.MutableClassToInstanceMap;
 import com.runemate.game.api.hybrid.entities.GameObject;
-import com.runemate.game.api.hybrid.location.Area;
 import com.runemate.game.api.hybrid.region.GameObjects;
-import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.AgilityState;
+import net.kullmar.bots.agility.courses.CourseLogic;
 import net.kullmar.bots.agility.courses.rooftops.states.RooftopIdleState;
 import net.kullmar.bots.agility.courses.rooftops.states.RooftopInteractingState;
 import net.kullmar.bots.agility.courses.rooftops.states.RooftopMarkState;
@@ -43,10 +42,5 @@ public class RooftopLogic implements CourseLogic {
     @Override
     public void updateState(Class<? extends AgilityState> state) {
         currentState = states.getInstance(state);
-    }
-
-    @Override
-    public Area getStartingArea() {
-        return rooftopInfo.getStartingArea();
     }
 }

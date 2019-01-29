@@ -5,6 +5,7 @@ import com.runemate.game.api.hybrid.entities.GameObject;
 import com.runemate.game.api.hybrid.entities.Player;
 import com.runemate.game.api.hybrid.entities.definitions.GameObjectDefinition;
 import com.runemate.game.api.hybrid.local.Skill;
+import com.runemate.game.api.hybrid.location.Coordinate;
 import com.runemate.game.api.hybrid.region.Players;
 import com.runemate.game.api.script.Execution;
 import com.runemate.game.api.script.framework.listeners.SkillListener;
@@ -16,6 +17,7 @@ import static com.runemate.game.api.hybrid.Environment.getLogger;
 
 public class RooftopInteractingState extends AgilityState implements SkillListener {
     private boolean isInteracting = false;
+    private Coordinate lastPosition;
 
     public RooftopInteractingState(CourseLogic courseLogic) {
         super(courseLogic);
@@ -41,13 +43,14 @@ public class RooftopInteractingState extends AgilityState implements SkillListen
             getLogger().debug("Failed to click obstacle");
             return;
         }
-        isInteracting = true;
         Player local = Players.getLocal();
         if (local == null) {
             return;
         }
+        isInteracting = true;
+        lastPosition = local.getPosition();
         getLogger().debug("Clicked obstacle");
-        if (Execution.delayWhile(this::isInteracting, () -> local.isMoving() || local.getAnimationId() != -1, 2000,
+        if (Execution.delayWhile(this::isInteracting, () -> hasMoved() || local.getAnimationId() != -1, 2000,
                 3000)) {
             courseLogic.updateState(RooftopIdleState.class);
         }
@@ -72,6 +75,20 @@ public class RooftopInteractingState extends AgilityState implements SkillListen
     private boolean hasTakenDamage() {
         Player self = Players.getLocal();
         return self != null && self.getHealthGauge() != null;
+    }
+
+    private boolean hasMoved() {
+        boolean isNewPos = false;
+        Player local = Players.getLocal();
+        if (local == null) {
+            return false;
+        }
+        Coordinate newPos = local.getPosition();
+        if (!lastPosition.equals(newPos)) {
+            isNewPos = true;
+        }
+        lastPosition = newPos;
+        return isNewPos;
     }
 
     @Override
